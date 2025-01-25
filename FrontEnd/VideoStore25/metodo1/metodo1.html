@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Film infos by Film Id</title>
+    <link rel="stylesheet" href="metodo1.css"> <!-- Link al file CSS -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/VideoStore25/chiamateVideoStore.html" class="back-link"><u>Torna indietro</u></a>
+            <h1>Update Film infos by Film Id</h1>
+        </header>
+
+        <main>
+            <section class="method">
+                <!-- Input per i dettagli del film -->
+                <label for="filmId">Film ID:</label>
+                <input type="number" id="filmId" min="1" placeholder="Es. 5" required/>
+
+                <label for="title">Titolo:</label>
+                <input type="text" id="title" placeholder="Es. Nuovo titolo" maxlength="100" required><br><br>
+
+                <label for="description">Descrizione:</label>
+                <input type="text" id="description" placeholder="Es. Descrizione aggiornata" required/>
+
+                <label for="releaseYear">Anno di uscita:</label>
+                <input type="number" id="releaseYear" placeholder="Es. 2025" min="1800" required/><br><br>
+
+                <label for="languageId">Language ID:</label>
+                <input type="number" id="languageId" min="1" placeholder="Es. 1" required/>
+
+                <label for="genreId">Genre ID:</label>
+                <input type="number" id="genreId" min="1" placeholder="Es. 2" required/><br><br>
+
+                <!-- Bottone per chiamare metodo -->
+                <button id="updateFilmButton">Aggiorna Film</button>
+
+                <!-- Div per mostrare il risultato -->
+                <div id="result"></div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Creato da <a href="https://github.com/BioShip0706" target="_blank">BioShip0706</a></p>
+        </footer>
+    </div>
+
+    <script src="metodo1.js"></script> <!-- Link al file JavaScript -->
+    <script src="/VideoStore25/global.js"></script>
+</body>
+</html>

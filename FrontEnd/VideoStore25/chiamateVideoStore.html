@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chiamate Http Video Store 25</title>
+        <link rel="stylesheet" href="chiamate.css"> <!-- Link al file CSS -->
+    </head>
+    <body>
+        <div class="container">
+            <div class="login-status">
+                <span><strong>Stato login:</strong></span><br>
+                <span id="username"></span><br>
+                <span id="authorities"></span><br><br>
+                <span id="login-logout-span"><a href="login.html" onclick="logout()">Logout</a></span>
+            </div>
+            <header>
+                <br>
+                <h1>Chiamate Http Video Store 25</h1>
+            </header>
+            <main>
+                <section class="endpoints">
+                    <h2>Endpoints disponibili</h2>
+                    <div class="endpoint-group">
+                        <div class="user-endpoints">
+                            <h3>Endpoints per i Membri</h3>
+                            <ul>
+                                <li><a href="metodo2/metodo2.html">Find films By Language Id</a></li>
+                                <li><a href="metodo4/metodo4.html">Count customers By Store name</a></li>
+                                <li><a href="metodo5/metodo5.html">Add or Update a Rental</a></li>
+                                <li><a href="metodo7/metodo7.html">Find all Films rent by one customer</a></li>
+                                <li><a href="metodo8/metodo8.html">Find Film with max number of rents</a></li>
+                                <li><a href="metodo9/metodo9.html">Find Films with all specified actors</a></li>
+                                <li><a href="metodo10/metodo10.html">Find Available Rents of a Film</a></li>
+                                
+                            </ul>
+                        </div>
+                        <div class="admin-endpoints">
+                            <h3>Endpoints ADMIN</h3>
+                            <ul>
+                                <li><a href="metodo1/metodo1.html">Update Film infos by Film Id</a></li>
+                                <li><a href="metodo3/metodo3.html">Add Film to Store</a></li>
+                                <li><a href="metodo4/metodo4.html">Count customers By Store name</a></li>
+                                <li><a href="metodo6/metodo6.html">Count rentals In a Date Range By Store</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <script src="chiamate.js"></script> <!-- Link al file JavaScript -->
+        <script src="global.js"></script>
+    </body>
+</html>

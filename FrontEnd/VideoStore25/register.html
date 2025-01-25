@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrazione</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+    <!-- Titolo della pagina -->
+    <div class="form-container">
+        <h1>VIDEO STORE 25</h1>
+        <h2>Registrazione</h2>
+
+        <form id="registerForm">
+            <!-- Campi per Username e Password separati -->
+            <div class="username-password">
+                <input type="text" id="username" class="input-field" placeholder="Username" required minlength = "4" maxlength = "15">
+                <input type="password" id="password" class="input-field" placeholder="Password" required pattern="^[a-zA-Z0-9]{6,10}$">
+            </div>
+            <hr>
+
+            <!-- Testo dopo Username e Password -->
+            <p class="info-text"><strong>Diventa un cliente inserendo i tuoi dati e inizia subito a noleggiare!</strong></p>
+
+            <!-- Campi per Name, Surname, Email -->
+            <input type="text" id="name" class="input-field" placeholder="Nome" required minlength="1", maxlength="50">
+            <input type="text" id="surname" class="input-field" placeholder="Cognome" required minlength="1", maxlength="50">
+            <input type="email" id="email" class="input-field" placeholder="Email" required maxlength="254">
+            
+            <div id="resultMessage"></div>  <!-- Messaggio stato errore o messaggio  della responseEntity -->
+            <button type="submit" class="submit-btn">Registrati</button>
+        </form>
+
+        <div class="login-link">
+            <p>Sei già un cliente? <a href="login.html"><strong> Login</strong></a></p>
+        </div>
+
+
+
+    </div>
+    
+    <!-- Footer pagina con link GitHub -->
+    <footer class="footer">
+        <p>Creato da <a href="https://github.com/BioShip0706" target="_blank">BioShip0706</a></p>
+    </footer>
+
+    <script src="register.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Films by Language Id</title>
+    <link rel="stylesheet" href="metodo2.css"> <!-- Link al file CSS -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/VideoStore25/chiamateVideoStore.html" class="back-link"><u>Torna indietro</u></a>
+            <h1>Find Films By Language Id</h1>
+        </header>
+
+        <main>
+            <section class="method">
+                <!-- Bottone con input per Language ID -->
+                <label for="languageId">Language Id:</label>
+                <input type="number" id="languageId" min="1" placeholder="Es. 5" value="1" max="20"/>
+                <!-- Bottone che chiama il metodo "metodo2" -->
+                <button id="callMethod">Chiama Metodo</button>
+
+                <!-- Tabella risultati della chiamata HTTP -->
+                <table id="filmsTable">
+                    <thead>
+                        <tr>
+                            <th>Film ID</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Release Year</th>
+                            <th>Language Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- I dati della chiamata HTTP verranno inseriti qui -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+        <footer>
+            <p>Creato da <a href="https://github.com/BioShip0706" target="_blank">BioShip0706</a></p>
+        </footer>
+    </div>
+
+    <script src="metodo2.js"></script> <!-- Link al file JavaScript -->
+    <script src="/VideoStore25/global.js"></script>
+</body>
+</html>

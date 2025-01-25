@@ -81,11 +81,11 @@ public class AuthenticationService {
             return new ResponseEntity<String>("Bad credentials or User not existing", HttpStatus.BAD_REQUEST);
         }
 
-        boolean isGuest = ArrayUtils.contains(authorities(user.getAuthorities()), "ROLE_GUEST");
+        /*boolean isGuest = ArrayUtils.contains(authorities(user.getAuthorities()), "ROLE_GUEST");
         if(!user.isEnabled() && isGuest)
         {
             return new ResponseEntity("Please check your email and activate your  account",HttpStatus.UNAUTHORIZED);
-        }
+        }*/
 
 
 
