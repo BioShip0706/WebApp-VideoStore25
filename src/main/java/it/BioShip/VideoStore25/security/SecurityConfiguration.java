@@ -29,7 +29,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         // Configura CORS per permettere richieste da http://127.0.0.1:5500
         registry.addMapping("/**")
-                .allowedOrigins("http://127.0.0.1:5500")  // Permetti l'origine del tuo frontend
+                .allowedOriginPatterns("*")  // Permetti l'origine del tuo frontend
                 .allowedMethods("GET", "POST", "PUT", "DELETE")  // Permetti i metodi necessari
                 .allowedHeaders("Authorization", "Content-Type")  // Permetti gli header necessari
                 .allowCredentials(true);  // Se usi cookie, imposta a true

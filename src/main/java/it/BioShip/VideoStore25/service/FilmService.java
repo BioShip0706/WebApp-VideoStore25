@@ -58,6 +58,11 @@ public class FilmService
         //Language language = languageRepository.findById(3L).orElseThrow(() -> new ResourceNotFoundException("Language", "id", 3));
         //List<Film> films = filmRepository.findByLanguageId(language);
 
+        if(!languageRepository.existsById(languageId))
+        {
+            return new ResponseEntity<>("Language does not exist!",HttpStatus.NOT_FOUND);
+        }
+
         Language language = languageRepository.findById(languageId).orElseThrow(() -> new ResourceNotFoundException("Language","Id",languageId));
         List<FilmResponse> filmsByLanguage = filmRepository.findByLanguageId(languageId);
 
@@ -65,7 +70,7 @@ public class FilmService
         {
             return new ResponseEntity(filmsByLanguage,HttpStatus.OK);
         }
-        return new ResponseEntity("No films found with " + language.getLanguageName() + " language", HttpStatus.OK);
+        return new ResponseEntity<>("No films found with " + language.getLanguageName() + " language", HttpStatus.OK);
     }
 
     @Transactional

@@ -32,6 +32,15 @@ public class RentalService
     @Transactional
     public ResponseEntity<?> addUpdateRental(RentalRequest request, String scelta)
     {
+        if(!filmRepository.existsById(request.getFilmId()))
+        {
+            return new ResponseEntity<>("Film does not exist",HttpStatus.NOT_FOUND);
+        }
+        if(!storeRepository.existsById(request.getStoreId()))
+        {
+            return new ResponseEntity<>("Store does not exist",HttpStatus.NOT_FOUND);
+        }
+
         Customer customer = customerRepository.findById(request.getCustomerId()).orElseThrow(() -> new ResourceNotFoundException("Customer","Id", request.getCustomerId()));
         Store store =  storeRepository.findById(request.getStoreId()).orElseThrow(() -> new ResourceNotFoundException("Store","Id", request.getStoreId()));
         Film film = filmRepository.findById(request.getFilmId()).orElseThrow(() -> new ResourceNotFoundException("Film","Id", request.getStoreId()));

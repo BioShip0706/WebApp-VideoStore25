@@ -37,7 +37,8 @@ public class FilmStoreController
     }
 
 
-    @PreAuthorize("hasRole('ROLE_MEMBER')")
+    //@PreAuthorize("hasRole('ROLE_MEMBER')")
+    @PreAuthorize("hasRole('ROLE_MEMBER') or hasRole('ROLE_ADMIN')")
     @GetMapping("/find-films-by-language/{languageId}") //METODO 2
     public ResponseEntity<?> findFilmsByLanguage(@PathVariable @Min(1) long languageId)
     {
@@ -58,7 +59,8 @@ public class FilmStoreController
         return storeService.countCustomersByStore(storeName);
     }
 
-    @PreAuthorize("hasRole('ROLE_MEMBER')")
+    //@PreAuthorize("hasRole('ROLE_MEMBER')")
+    @PreAuthorize("hasRole('ROLE_MEMBER') or hasRole('ROLE_ADMIN')")
     @PutMapping("/add-update-rental/{ReturnOrRent}") //METODO 5
     public ResponseEntity<?> addUpdateRental(@RequestBody @Valid RentalRequest request, @PathVariable @NotBlank String ReturnOrRent)
     {
@@ -72,28 +74,29 @@ public class FilmStoreController
         return rentalService.countRentalsInDateRangeByStore(storeId, start, end);
     }
 
-    @PreAuthorize("hasRole('ROLE_MEMBER')") //admin per un altro customer
+    //@PreAuthorize("hasRole('ROLE_MEMBER')") //admin per un altro customer
+    @PreAuthorize("hasRole('ROLE_MEMBER') or hasRole('ROLE_ADMIN')")
     @GetMapping("/find-all-films-rent-by-one-customer/{customerId}") //METODO 7
     public ResponseEntity<?> findAllFilmsRentByOneCustomer(@PathVariable @Min(1) long customerId)
     {
         return filmService.findAllFilmsRentByOneCustomer(customerId);
     }
 
-    @PreAuthorize("hasRole('ROLE_MEMBER')")
+    @PreAuthorize("hasRole('ROLE_MEMBER') or hasRole('ROLE_ADMIN')")
     @GetMapping("/find-film-with-max-number-of-rent") //METODO 8
     public ResponseEntity<?> findFilmWithMaxNumberOfRent()
     {
         return filmService.findFilmWithMaxNumberOfRent();
     }
 
-    @PreAuthorize("hasRole('ROLE_MEMBER')")
+    @PreAuthorize("hasRole('ROLE_MEMBER') or hasRole('ROLE_ADMIN')")
     @GetMapping("/find-films-by-actors/") //METODO 9
     public ResponseEntity<?> findFilmsByActors(@RequestParam Set<Long> actorsIdList)
     {
         return filmService.findFilmsByActors(actorsIdList);
     }
 
-    @PreAuthorize("hasRole('ROLE_MEMBER')")
+    @PreAuthorize("hasRole('ROLE_MEMBER') or hasRole('ROLE_ADMIN')")
     @GetMapping("/find-rentable-films/") //METODO 10
     public ResponseEntity<?> findRentableFilms(@RequestParam @NotBlank String title)
     {

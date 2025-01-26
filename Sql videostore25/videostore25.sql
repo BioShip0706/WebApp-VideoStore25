@@ -10,7 +10,8 @@ INSERT INTO user(created_at, updated_at, enabled, password, username, customer_i
 	('2025-01-01 12:00:00', '2025-01-01 12:00:00', 1, '$2a$10$bRuIJTp9DRQ.mK1DNWy6C.iIreYAE5BZkiON7esMDfXKlxpzXSQRe', 'AdminUser', 80);
 
 INSERT INTO user_authorities(user_id, authority_id) VALUES
-	(1,1);
+	(1,1),
+	(1,2);
 
 INSERT INTO language (language_id, language_name) VALUES
 	(1, 'English'),
