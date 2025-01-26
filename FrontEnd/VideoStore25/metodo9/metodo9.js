@@ -3,12 +3,13 @@ document.getElementById("callMethod").addEventListener("click", metodo2);
 
 function metodo2() 
 {
+    const actorIdsField = document.getElementById("actorIds");
+    const actorIds = actorIdsField.value.trim();
     
-    const actorIds = document.getElementById("actorIds").value.trim();
     
-    
-    if (!actorIds) {
-        alert("Per favore inserisci almeno un Id Attore");
+    if (!actorIds || !actorIdsField.checkValidity()) 
+    {
+        alert("Inserisci un Id valido (es. 1,2,3)");
         return;
     }
 
@@ -48,19 +49,22 @@ function metodo2()
         })
         .then(data => {
             
+            const tableBody = document.getElementById("filmsTable").getElementsByTagName("tbody")[0];
+            tableBody.innerHTML = "";  
+
             if (Array.isArray(data) && data.length === 0) {
-                document.getElementById("filmsTable").innerHTML = "<tr><td colspan='5'>Nessun film trovato con gli attori specificati.</td></tr>";
+                tableBody.innerHTML = "<tr><td colspan='5'>Nessun film trovato con gli attori specificati.</td></tr>";
                 return;
             }
 
-            // Altrimenti, popolate la tabella con i dati ricevuti
-            const tableBody = document.getElementById("filmsTable").getElementsByTagName("tbody")[0];
+            
+            
             tableBody.innerHTML = ""; // Pulisci la tabella esistente
 
             data.forEach(film => {
                 const row = tableBody.insertRow(); 
 
-                // Aggiungi celle per ogni colonna
+                
                 row.insertCell(0).textContent = film.filmId;
                 row.insertCell(1).textContent = film.title;
                 row.insertCell(2).textContent = film.description;

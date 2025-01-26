@@ -12,6 +12,13 @@ document.getElementById("updateFilmButton").addEventListener("click", () => {
         document.getElementById("result").innerText = "Compila tutti i campi.";
         return;
     }
+    
+    if(!document.getElementById("updateFilmForm").checkValidity())
+    {
+        alert("Inserisci dati validi!");
+        return;
+    }
+
 
     // Creo la request come la classe Java
     const filmRequest = {

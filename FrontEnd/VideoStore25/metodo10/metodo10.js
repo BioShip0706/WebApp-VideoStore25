@@ -12,6 +12,12 @@ function metodo2()
         return;
     }
 
+    if(!document.getElementById("filmTitle").checkValidity())
+    {
+        alert("Inserisci dati validi");
+        return;
+    }
+
 
     const token = localStorage.getItem('jwtToken'); 
 
@@ -22,42 +28,47 @@ function metodo2()
 
    
          //http://localhost:8080/film/find-rentable-films/?title=ACE%20GOLDFINGER
-    fetch(`http://localhost:8080/film/find-rentable-films/?title=${filmTitle}`, {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${token}`, 
-            'Content-Type': 'application/json'
-        }
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Errore nella risposta del server");
+         fetch(`http://localhost:8080/film/find-rentable-films/?title=${filmTitle}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
             }
-            return response.json(); 
         })
-        .then(data => {
-            
-            if (Array.isArray(data) && data.length === 0) {
-                document.getElementById("filmsTable").innerHTML = "<tr><td colspan='5'>Nessun film trovato per la lingua selezionata.</td></tr>";
-                return;
-            }
+            .then(response => response.text()) //Corpo risposta in testo
+            .then(text => 
+            {
 
-           
-            const tableBody = document.getElementById("filmsTable").getElementsByTagName("tbody")[0];
-            tableBody.innerHTML = ""; 
+                const tableBody = document.getElementById("filmsTable").getElementsByTagName("tbody")[0];
+                try {
 
-            data.forEach(film => {
-                const row = tableBody.insertRow(); 
-
-                // Aggiungi celle per ogni colonna
-                row.insertCell(0).textContent = film.title;
-                row.insertCell(1).textContent = film.storeName;
-                row.insertCell(2).textContent = film.navailableCopies;
-                row.insertCell(3).textContent = film.nstockCopies;
+                    const data = JSON.parse(text); //Prova parse
+                    tableBody.innerHTML = ""; // Pulisci il corpo della tabella
+        
+                    // Verifica se la risposta è un array e gestisci i casi
+                    if (Array.isArray(data) && data.length === 0) {
+                        tableBody.innerHTML = "<tr><td colspan='5'>Nessun film trovato per il titolo selezionato.</td></tr>";
+                        return;
+                    }
+        
+                    // Popola la tabella con i dati ricevuti
+                    data.forEach(film => {
+                        const row = tableBody.insertRow();
+                        row.insertCell(0).textContent = film.title;
+                        row.insertCell(1).textContent = film.storeName;
+                        row.insertCell(2).textContent = film.navailableCopies;
+                        row.insertCell(3).textContent = film.nstockCopies;
+                    });
+                } catch (error) {
+                    // Parsing fallito , messaggio responseEntity
+                    console.error('Errore nel parsing della risposta:', error);
+                    tableBody.innerHTML = `<tr><td colspan='5'>${text}</td></tr>`;
+                }
+            })
+            .catch(error => {
+                // Gestione errori per problemi di rete o altre eccezioni
+                const tableBody = document.getElementById("filmsTable").getElementsByTagName("tbody")[0];
+                tableBody.innerHTML = `<tr><td colspan='5'>Errore durante il recupero dei dati: ${error.message}</td></tr>`;
+                console.error('Errore durante la chiamata API:', error);
             });
-        })
-        .catch(error => {
-            console.error('Errore durante la chiamata API:', error);
-            alert('Si è verificato un errore durante il recupero dei film.');
-        });
 }

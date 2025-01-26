@@ -127,8 +127,7 @@ public class FilmService
                 break;
             }
         }
-
-
+        //mostRentedFilms.clear();
         return new ResponseEntity<>(mostRentedFilms,HttpStatus.OK);
     }
 

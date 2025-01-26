@@ -21,6 +21,12 @@ function addUpdateRental(scelta)
         return;
     }
 
+    if(!document.getElementById("addUpdateForm").checkValidity())
+    {
+        alert("Inserisci dati validi");
+        return;
+    }
+
     // Request java
     const rentalRequest = {
         customerId: parseInt(localStorage.getItem('customerId')),

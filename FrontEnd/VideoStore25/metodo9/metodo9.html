@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find Films with all specified actors</title>
-    <link rel="stylesheet" href="/VideoStore25/metodo2/metodo2.css"> <!-- Link al file CSS -->
+    <link rel="stylesheet" href="../metodo2/metodo2.css"> <!-- Link al file CSS -->
 </head>
 <body>
     <div class="container">
         <header>
-            <a href="/VideoStore25/chiamateVideoStore.html" class="back-link"><u>Torna indietro</u></a>
+            <a href="../chiamateVideoStore.html" class="back-link"><u>Torna indietro</u></a>
             <h1>Find Films with all specified actors Ids</h1>
         </header>
 
@@ -17,7 +17,7 @@
             <section class="method">
                
                 <label for="actorIds">Actor IDs (separati da virgola):</label>
-                <input type="text" id="actorIds" placeholder="es. 1,2,3,4" minlength = "1">
+                <input type="text" id="actorIds" placeholder="es. 1,2,3,4" minlength = "1" pattern="^\d+(,\d+)*$" value="1,2,3">
                 
                 <button id="callMethod">Chiama Metodo</button>
 
@@ -45,6 +45,6 @@
     </div>
 
     <script src="metodo9.js"></script> <!-- Link al file JavaScript -->
-    <script src="/VideoStore25/global.js"></script>
+    <script src="../global.js"></script>
 </body>
 </html>

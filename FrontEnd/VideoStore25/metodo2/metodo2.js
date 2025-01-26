@@ -10,6 +10,11 @@ function metodo2() {
         return;
     }
 
+    if(!document.getElementById("languageId").checkValidity())
+    {
+        alert("Inserisci dati validi!");
+        return;
+    }
     
     const token = localStorage.getItem('jwtToken'); 
 
@@ -22,40 +27,44 @@ function metodo2() {
     fetch(`http://localhost:8080/film/find-films-by-language/${languageId}`, {
         method: 'GET',
         headers: {
-            'Authorization': `Bearer ${token}`, 
+            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
         }
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Errore nella risposta del server");
+        .then(response => response.text())  // Ricevi la risposta come testo
+        .then(text => {
+            try {
+                const data = JSON.parse(text);  // Prova a fare il parsing come JSON in caso ritornasse List<FilmResponse> filmsByLanguage
+                const tableBody = document.getElementById("filmsTable").getElementsByTagName("tbody")[0];
+                tableBody.innerHTML = "";  // Pulisci solo il corpo della tabella, non gli header
+    
+                if (Array.isArray(data)) {
+                    if (data.length === 0) {
+                        tableBody.innerHTML = "<tr><td colspan='5'>Nessun film trovato per la lingua selezionata.</td></tr>";
+                    } else {
+                        data.forEach(film => {
+                            const row = tableBody.insertRow();
+                            row.insertCell(0).textContent = film.filmId;
+                            row.insertCell(1).textContent = film.title;
+                            row.insertCell(2).textContent = film.description;
+                            row.insertCell(3).textContent = film.releaseYear;
+                            row.insertCell(4).textContent = film.languageName;
+                        });
+                    }
+                } else {
+                    // Se è una stringa (es. errore o messaggio)
+                    tableBody.innerHTML = `<tr><td colspan='5'>${data}</td></tr>`;
+                }
+            } catch (error) {
+                console.error('Errore nel parsificare la risposta JSON:', error);
+                const tableBody = document.getElementById("filmsTable").getElementsByTagName("tbody")[0];
+                tableBody.innerHTML = `<tr><td colspan='5'>${text}</td></tr>`;
             }
-            return response.json(); 
-        })
-        .then(data => {
-            // Se non ci sono film
-            if (Array.isArray(data) && data.length === 0) {
-                document.getElementById("filmsTable").innerHTML = "<tr><td colspan='5'>Nessun film trovato per la lingua selezionata.</td></tr>";
-                return;
-            }
-
-            //Popolo tabella
-            const tableBody = document.getElementById("filmsTable").getElementsByTagName("tbody")[0];
-            tableBody.innerHTML = ""; // Pulisci la tabella esistente
-
-            data.forEach(film => {
-                const row = tableBody.insertRow(); // Aggiungi una nuova riga alla tabella
-
-                // Aggiungi celle per ogni colonna
-                row.insertCell(0).textContent = film.filmId;
-                row.insertCell(1).textContent = film.title;
-                row.insertCell(2).textContent = film.description;
-                row.insertCell(3).textContent = film.releaseYear;
-                row.insertCell(4).textContent = film.languageName;
-            });
         })
         .catch(error => {
             console.error('Errore durante la chiamata API:', error);
-            alert('Si è verificato un errore durante il recupero dei film.');
+            const tableBody = document.getElementById("filmsTable").getElementsByTagName("tbody")[0];
+            tableBody.innerHTML = `<tr><td colspan='5'>Si è verificato un errore durante il recupero dei film.</td></tr>`;
         });
+    
 }

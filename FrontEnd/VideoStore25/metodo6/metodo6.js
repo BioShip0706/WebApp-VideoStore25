@@ -13,17 +13,28 @@ function countRentals()
     const dateStart = document.getElementById("dateStart").value
     const dateEnd = document.getElementById("dateEnd").value
 
+    // console.log(storeId)
+    // console.log(dateStart)
+    // console.log(dateEnd)
+
     // Verifica che tutti i campi siano compilati
     if (!dateStart || !dateEnd || !storeId ) {
         document.getElementById("result").innerText = "Compila tutti i campi.";
         return;
     }
-
-    if(dateStart < "2023-01-01" || dateStart < "2023-01-01" )
+    
+    if(!document.getElementById("countRentalsForm").checkValidity())
     {
-        document.getElementById("result").innerText = "Le date non possono essere inferiori al 01/01/2023";
+        alert("Inserisci dati validi");
         return;
     }
+
+    if(dateStart >  dateEnd )
+    {
+        document.getElementById("result").innerText = "Data di fine non può essere minore dell'inizio";
+        return;
+    }
+
 
    
 
@@ -41,16 +52,16 @@ function countRentals()
             "Authorization": `Bearer ${token}` 
         },
     })
-        .then((response) => {
-            if (!response.ok) {
-                return response.text();
-            }
-            return response.text(); 
-        })
-        .then((data) => {
-            document.getElementById("result").innerText = "Non sei un admin / errore del server";
-        })
-        .catch((error) => {
-            document.getElementById("result").innerText = "Non sei un admin / errore del server";
-        });
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error("Errore nell'aggiornamento del film.");
+        }
+        return response.text(); 
+    })
+    .then((data) => {
+        document.getElementById("result").innerText = data; 
+    })
+    .catch((error) => {
+        document.getElementById("result").innerText = "Non sei un admin / errore del server";
+    });
 };

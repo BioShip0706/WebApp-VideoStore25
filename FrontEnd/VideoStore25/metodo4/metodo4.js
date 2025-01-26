@@ -20,27 +20,27 @@ function countCustomersByStore(storeName) {
             'Authorization': `Bearer ${token}`
         }
     })
-    .then(response => {
-        if (!response.ok) {
-            
-            return response.text().then(text => {
-                
-                throw new Error(text);
-            });
-        }
-        
-        return response.json();
-    })
-    .then(data => {
-       
-        const resultText = `Lo Store ${data.storeName} ha ${data.totalCustomers} clienti!`;
-        document.getElementById("result").textContent = resultText;
-        document.getElementById("result").className = "success";
-    })
-    .catch(error => {
-        
-        document.getElementById("result").innerText = "Non sei un admin / errore del server";
-        document.getElementById("result").className = "error";
-    });
+        .then(response => {
+            if (!response.ok) {
+                // Se la risposta non è OK, prova a leggere il testo della risposta
+                return response.text().then(text => {
+                    // Crea un errore usando il testo del corpo della risposta
+                    throw new Error(text);
+                });
+            }
+            // Se la risposta è OK, convertila in JSON
+            return response.json();
+        })
+        .then(data => {
+            // Se la risposta è corretta, mostra i dati
+            const resultText = `Lo Store ${data.storeName} ha ${data.totalCustomers} clienti!`;
+            document.getElementById("result").textContent = resultText;
+            document.getElementById("result").className = "success";
+        })
+        .catch(error => {
+            // Gestisci gli errori nel blocco catch
+            document.getElementById("result").innerText = error.message || "Si è verificato un errore del server.";
+            document.getElementById("result").className = "error";
+        });
 }
 

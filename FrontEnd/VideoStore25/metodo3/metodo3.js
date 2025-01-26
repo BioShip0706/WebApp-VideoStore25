@@ -15,6 +15,11 @@ function metodo3() {
         return;
     }
 
+    if(!document.getElementById("addFilmStoreForm").checkValidity())
+    {
+        alert("Inserisci dati validi");
+        return;
+    }
     
                //http://localhost:8080/film/add-film-to-store/7/1001
     const url = `http://localhost:8080/film/add-film-to-store/${storeId}/${filmId}`;
@@ -44,7 +49,7 @@ function metodo3() {
         document.getElementById("result").className = "success";
     })
     .catch((error) => {
-        document.getElementById("result").innerText = "Non sei un admin / errore del server";
+        document.getElementById("result").innerText = error.message;
     });
 }
 

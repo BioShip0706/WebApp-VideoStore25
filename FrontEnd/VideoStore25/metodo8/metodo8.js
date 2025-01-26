@@ -32,19 +32,22 @@ function metodo2()
         })
         .then(data => {
             
+            const tableBody = document.getElementById("filmsTable").getElementsByTagName("tbody")[0];
+                tableBody.innerHTML = "";  // Pulisci corpo tabella,
+
             if (Array.isArray(data) && data.length === 0) {
-                document.getElementById("filmsTable").innerHTML = "<tr><td colspan='5'>Nessun film trovato.</td></tr>";
+                tableBody.innerHTML = "<tr><td colspan='5'>Nessun film trovato.</td></tr>";
                 return;
             }
 
             
-            const tableBody = document.getElementById("filmsTable").getElementsByTagName("tbody")[0];
-            tableBody.innerHTML = ""; // Pulisci la tabella esistente
+            //const tableBody = document.getElementById("filmsTable").getElementsByTagName("tbody")[0];
+            tableBody.innerHTML = ""; 
 
             data.forEach(film => {
                 const row = tableBody.insertRow(); 
 
-                // Aggiungi celle per ogni colonna
+                // Aggiunta celle alle righe
                 row.insertCell(0).textContent = film.filmId;
                 row.insertCell(1).textContent = film.title;
                 row.insertCell(2).textContent = film.nrents;
