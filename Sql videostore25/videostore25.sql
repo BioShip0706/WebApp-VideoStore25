@@ -6,12 +6,6 @@ INSERT INTO authority (authority_name, default_authority, visible) VALUES
 	('ROLE_MEMBER',true,true);
 
 
-INSERT INTO user(created_at, updated_at, enabled, password, username, customer_id) VALUES
-	('2025-01-01 12:00:00', '2025-01-01 12:00:00', 1, '$2a$10$bRuIJTp9DRQ.mK1DNWy6C.iIreYAE5BZkiON7esMDfXKlxpzXSQRe', 'AdminUser', 80);
-
-INSERT INTO user_authorities(user_id, authority_id) VALUES
-	(1,1),
-	(1,2);
 
 INSERT INTO language (language_id, language_name) VALUES
 	(1, 'English'),
@@ -27947,3 +27941,11 @@ INSERT INTO rental (customer_id, inventory_id, rental_date, rental_return) VALUE
 	(599, 4048, '2023-10-24 01:10:15', '2023-10-25 06:15:15'),
 	(599, 4091, '2023-10-22 02:09:53', '2023-10-23 05:24:53'),
 	(599, 4575, '2023-10-23 11:21:44', '2023-10-24 17:26:44');
+    
+    
+INSERT INTO user(created_at, updated_at, enabled, password, username, customer_id) VALUES
+	('2025-01-01 12:00:00', '2025-01-01 12:00:00', 1, '$2a$10$bRuIJTp9DRQ.mK1DNWy6C.iIreYAE5BZkiON7esMDfXKlxpzXSQRe', 'AdminUser', 80);
+
+INSERT INTO user_authorities(user_id, authority_id) VALUES
+	(1,1),
+	(1,2);
