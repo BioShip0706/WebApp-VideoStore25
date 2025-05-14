@@ -13,7 +13,7 @@
 <h2>🎮 Come impostare:</h2>
 <ol>
     <li>Scaricare il codice sorgente.</li>
-    <li>Modificare le variabili d'ambiente.</li>
+    <li>Modificare le variabili d'ambiente*.</li>
     <li>Creare il database <strong>videostore25</strong>.</li>
     <li>Avviare l'applicazione per la creazione delle tabelle.</li>
     <li>Eseguire il file <strong>.sql</strong> nella cartella <strong>Sql videostore25</strong> per popolare le tabelle.</li>
@@ -22,7 +22,9 @@
         <strong>-Username:</strong> AdminUser<br>
         <strong>-Password:</strong> ciao123</li>
     <li>Visitare l'endpoint desiderato.</li>
+
 </ol>
+*DATABASE_MYSQL_HOSTNAME=localhost;DATABASE_MYSQL_NAME=videostore25;DATABASE_MYSQL_PASSWORD=root;DATABASE_MYSQL_PORT=3306;DATABASE_MYSQL_USERNAME=root
 
   
 <h2>🛠️ Linguaggi e Strumenti:</h2> 
